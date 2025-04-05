@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>中国传统命理推算</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 苹果风格字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap">
+    <!-- 日期选择器样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>中国传统命理推算</h1>
+            <p class="subtitle">基于易经与命理的个人命运分析</p>
+            <nav class="main-nav">
+                <ul>
+                    <li class="active"><a href="index.html">首页</a></li>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">用户须知</a></li>
+                    <li><a href="#">法律条款</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="intro-section">
+                <div class="intro-card">
+                    <h2>首页介绍</h2>
+                    <p>中国传统命理推算是一门古老的学科，结合易经与命理的个人命运分析，提供详尽的个人命运报告。报告包括以下内容：</p>
+                    <ul class="feature-list">
+                        <li><span class="feature-icon">√</span> 八字排盘与命理分析</li>
+                        <li><span class="feature-icon">√</span> 四柱五行与命理分析</li>
+                        <li><span class="feature-icon">√</span> 大运、流年运势预测</li>
+                        <li><span class="feature-icon">√</span> 财运、事业、健康、爱情分析</li>
+                        <li><span class="feature-icon">√</span> 个人命运报告与建议</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="input-section">
+                <h2>输入您的出生信息</h2>
+                <form id="birthdate-form">
+                    <div class="form-row">
+                        <div class="date-input full-width">
+                            <label for="birthdate">出生日期</label>
+                            <input type="text" id="birthdate" name="birthdate" placeholder="选择日期" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="date-input">
+                            <label for="hour">时辰</label>
+                            <select id="hour" name="hour" required>
+                                <option value="" disabled selected>选择时辰</option>
+                                <!-- 时辰选项由JavaScript动态生成 -->
+                            </select>
+                        </div>
+
+                        <div class="date-input calendar-type">
+                            <label for="calendar-type">日历类型</label>
+                            <select id="calendar-type" name="calendar-type">
+                                <option value="solar" selected>阳历(日历)</option>
+                                <option value="lunar">阴历(农历)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="gender-input">
+                        <label>性别</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">男</label>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">女</label>
+                        </div>
+                    </div>
+
+                    <div class="analysis-options">
+                        <h3>分析选项</h3>
+                        <div class="options-grid">
+                            <div class="option-item">
+                                <input type="checkbox" id="basic-analysis" name="analysis-options" value="basic" checked>
+                                <label for="basic-analysis">基本八字分析</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="career-analysis" name="analysis-options" value="career" checked>
+                                <label for="career-analysis">事业运势分析</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="wealth-analysis" name="analysis-options" value="wealth" checked>
+                                <label for="wealth-analysis">财运分析</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="love-analysis" name="analysis-options" value="love" checked>
+                                <label for="love-analysis">爱情分析</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="health-analysis" name="analysis-options" value="health" checked>
+                                <label for="health-analysis">健康分析</label>
+                            </div>
+                            <div class="option-item">
+                                <input type="checkbox" id="yearly-fortune" name="analysis-options" value="yearly" checked>
+                                <label for="yearly-fortune">年度运势预测</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">开始推算</button>
+                </form>
+            </section>
+            
+            <!-- 新增：计算结果展示区域 -->
+            <section id="result-preview" class="result-preview" style="display: none;">
+                <h2>八字排盘预览</h2>
+                <div class="result-card">
+                    <div class="basic-info">
+                        <div class="info-row">
+                            <div class="info-label">阳历日期：</div>
+                            <div id="preview-solar-date" class="info-value"></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">农历日期：</div>
+                            <div id="preview-lunar-date" class="info-value"></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">八字：</div>
+                            <div id="preview-bazi" class="info-value"></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">五行：</div>
+                            <div id="preview-wuxing" class="info-value"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bazi-chart">
+                        <table class="bazi-table">
+                            <thead>
+                                <tr>
+                                    <th>年柱</th>
+                                    <th>月柱</th>
+                                    <th>日柱</th>
+                                    <th>时柱</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="stems-row">
+                                    <td id="year-stem"></td>
+                                    <td id="month-stem"></td>
+                                    <td id="day-stem"></td>
+                                    <td id="hour-stem"></td>
+                                </tr>
+                                <tr class="branches-row">
+                                    <td id="year-branch"></td>
+                                    <td id="month-branch"></td>
+                                    <td id="day-branch"></td>
+                                    <td id="hour-branch"></td>
+                                </tr>
+                                <tr class="elements-row">
+                                    <td id="year-element"></td>
+                                    <td id="month-element"></td>
+                                    <td id="day-element"></td>
+                                    <td id="hour-element"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="fortune-summary">
+                        <h3>命盘简析</h3>
+                        <p id="preview-summary"></p>
+                    </div>
+                    
+                    <div class="view-full-report">
+                        <button id="view-full-report-btn" class="primary-btn">查看完整报告</button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="testimonials">
+                <h2>用户评价</h2>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="https://via.placeholder.com/50" alt="用户头像">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>这个网站的分析非常准确，帮助我了解了自己的命运。非常感谢！</p>
+                            <div class="testimonial-author">李先生，企业管理者</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <img src="https://via.placeholder.com/50" alt="用户头像">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>这个网站的分析非常详尽，帮助我了解了自己的财运和事业。非常感谢！</p>
+                            <div class="testimonial-author">王女士，自由职业者</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>中国传统命理推算是一门古老的学科，我们致力于提供准确的个人命运分析和建议。我们的团队由经验丰富的命理师组成，他们将帮助您了解自己的命运和未来。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">用户须知</a></li>
+                        <li><a href="#">法律条款</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系方式</h3>
+                    <p>Email: contact@example.com</p>
+                    <p>电话：400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 中国传统命理推算. 所有权利保留.</p>
+                <p class="disclaimer">请注意，网站的分析和建议仅供参考，用户应对自己的行为负责。</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 日期选择器脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/zh.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

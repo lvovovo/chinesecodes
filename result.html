@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>命理分析结果 - 中国传统命理推算</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/result.css">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- 苹果风格字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&display=swap">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>命理分析结果</h1>
+            <p class="subtitle">基于易经与命理的个人命运分析</p>
+        </header>
+
+        <main>
+            <!-- 生辰八字信息卡片 -->
+            <section class="result-card" id="bazi-info">
+                <h2>生辰八字信息</h2>
+                <div class="info-container">
+                    <div class="info-row">
+                        <div class="info-label">阳历生日：</div>
+                        <div class="info-value" id="solar-date"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">农历生辰：</div>
+                        <div class="info-value" id="lunar-date"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">八字：</div>
+                        <div class="info-value" id="bazi"></div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">性别：</div>
+                        <div class="info-value" id="gender"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 命运分析结果卡片 -->
+            <section class="result-card">
+                <h2>命运总述</h2>
+                <div class="fortune-summary" id="fortune-summary">
+                    <!-- 这里将显示命运总述 -->
+                </div>
+            </section>
+
+            <!-- 各领域命运分析 -->
+            <section class="result-card">
+                <h2>详细分析</h2>
+                
+                <!-- 分析选项卡 -->
+                <div class="analysis-tabs">
+                    <button class="tab-btn active" data-tab="career">事业</button>
+                    <button class="tab-btn" data-tab="love">婚姻</button>
+                    <button class="tab-btn" data-tab="wealth">财运</button>
+                    <button class="tab-btn" data-tab="health">健康</button>
+                    <button class="tab-btn" data-tab="children">子女</button>
+                </div>
+                
+                <!-- 分析内容 -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="career-content">
+                        <!-- 事业分析内容 -->
+                    </div>
+                    <div class="tab-pane" id="love-content">
+                        <!-- 婚姻分析内容 -->
+                    </div>
+                    <div class="tab-pane" id="wealth-content">
+                        <!-- 财运分析内容 -->
+                    </div>
+                    <div class="tab-pane" id="health-content">
+                        <!-- 健康分析内容 -->
+                    </div>
+                    <div class="tab-pane" id="children-content">
+                        <!-- 子女缘分分析内容 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 未来运势预测 -->
+            <section class="result-card">
+                <h2>未来运势预测</h2>
+                <div class="future-prediction">
+                    <div class="timeline">
+                        <!-- 时间线将由JavaScript生成 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 返回按钮 -->
+            <div class="action-buttons">
+                <a href="index.html" class="back-btn">返回重新计算</a>
+                <button class="share-btn" id="share-btn">分享结果</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 中国传统命理推算. 所有权利保留.</p>
+            <p class="disclaimer">免责声明：本网站提供的命理分析仅供娱乐参考，不应作为生活决策的依据。</p>
+        </footer>
+    </div>
+
+    <script src="js/result.js"></script>
+</body>
+</html>
